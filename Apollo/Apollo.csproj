@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{354E72BE-C011-4FA0-B9C4-9877F223024A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Apollo</RootNamespace>
+    <AssemblyName>Apollo</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icons8-foguete-100.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base62, Version=1.2.0.0, Culture=neutral, PublicKeyToken=65af2e5d96893f11, processorArchitecture=MSIL">
+      <HintPath>..\packages\Base62-Net.1.2.157201\lib\netstandard2.0\Base62.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2021.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2021.3.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Ksuid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=65af2e5d96893f11, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ksuid.1.0.0\lib\netstandard2.0\Ksuid.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ReaLTaiizor, Version=3.7.8.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReaLTaiizor.3.7.8.6\lib\net48\ReaLTaiizor.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.3.1\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vip.Notification, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vip.Notification.1.0.4\lib\net45\Vip.Notification.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIs\HybridAnalysis\HybridAnalysisAPI.cs" />
+    <Compile Include="APIs\VirusTotal\VirusTotalAPI.cs" />
+    <Compile Include="Controls\UCAbout.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCAbout.Designer.cs">
+      <DependentUpon>UCAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCDragAndDrop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCDragAndDrop.Designer.cs">
+      <DependentUpon>UCDragAndDrop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCHistoryScan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCHistoryScan.Designer.cs">
+      <DependentUpon>UCHistoryScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCIntegrations.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCIntegrations.Designer.cs">
+      <DependentUpon>UCIntegrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCResultScan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCResultScan.Designer.cs">
+      <DependentUpon>UCResultScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCScanFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCScanFile.Designer.cs">
+      <DependentUpon>UCScanFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCMainScanFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCMainScanFile.Designer.cs">
+      <DependentUpon>UCMainScanFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCSettings.Designer.cs">
+      <DependentUpon>UCSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmViewHistoryScan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmViewHistoryScan.Designer.cs">
+      <DependentUpon>frmViewHistoryScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryScan\HistoryScanManager.cs" />
+    <Compile Include="Integrations\IntegrationsManager.cs" />
+    <Compile Include="Misc\Constants.cs" />
+    <Compile Include="Misc\Helpers.cs" />
+    <Compile Include="Models\HistoryScan\HistoryScan.cs" />
+    <Compile Include="Models\HybridAnalysis\Scan\QuickScan.cs" />
+    <Compile Include="Models\HybridAnalysis\Result\ResultScan.cs" />
+    <Compile Include="Models\Integrations\Integrations.cs" />
+    <Compile Include="Models\Settings\Settings.cs" />
+    <Compile Include="Models\VirusTotal\Result\ResultScan.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\SettingsManager.cs" />
+    <EmbeddedResource Include="Controls\UCAbout.resx">
+      <DependentUpon>UCAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCDragAndDrop.resx">
+      <DependentUpon>UCDragAndDrop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCHistoryScan.resx">
+      <DependentUpon>UCHistoryScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCIntegrations.resx">
+      <DependentUpon>UCIntegrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCResultScan.resx">
+      <DependentUpon>UCResultScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCScanFile.resx">
+      <DependentUpon>UCScanFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCMainScanFile.resx">
+      <DependentUpon>UCMainScanFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCSettings.resx">
+      <DependentUpon>UCSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmViewHistoryScan.resx">
+      <DependentUpon>frmViewHistoryScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons8-foguete-100.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
