@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -50,13 +51,18 @@ namespace Apollo.APIs.VirusTotal
                         request.Content = multipartContent;
 
                         var response = await httpClient.SendAsync(request);
+
+                        if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                        {
+                            Helpers.CreateLog(string.Format("Error on Uploading File to VirusTotal (StatusCode <> 200) | ERROR: {0}", await response.Content.ReadAsStringAsync()), true);
+                            throw new Exception();
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
                 Helpers.CreateLog(string.Format("Error on Uploading File to VirusTotal | ERROR: {0}", ex.Message), true);
-                throw ex;
             }
         }
 
@@ -77,14 +83,22 @@ namespace Apollo.APIs.VirusTotal
                     {
                         request.Headers.TryAddWithoutValidation("x-apikey", _apiKey);
 
-                        resultScanVirusTotal = JsonConvert.DeserializeObject<RootResultScanVirusTotal>(await httpClient.SendAsync(request).Result.Content.ReadAsStringAsync());
+                        var response = await httpClient.SendAsync(request);
+
+                        if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                        {
+                            Helpers.CreateLog(string.Format("Error on Getting VirusTotal Result (StatusCode <> 200) | ERROR: {0}", await response.Content.ReadAsStringAsync()), true);
+                            throw new Exception();
+                        }
+
+                        resultScanVirusTotal = JsonConvert.DeserializeObject<RootResultScanVirusTotal>(await response.Content.ReadAsStringAsync());
                     }
                 }
             }
             catch (Exception ex)
             {
                 Helpers.CreateLog(string.Format("Error on Getting VirusTotal Result | ERROR: {0}", ex.Message), true);
-                throw ex;
+                throw;
             }
 
             return resultScanVirusTotal;

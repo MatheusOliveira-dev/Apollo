@@ -62,14 +62,22 @@ namespace Apollo.APIs.HybridAnalysis
                         multipartContent.Add(file1, "file", Path.GetFileName(file));
                         request.Content = multipartContent;
 
-                        scanHybridAnalysis = JsonConvert.DeserializeObject<RootQuickScanHybridAnalysis>(await httpClient.SendAsync(request).Result.Content.ReadAsStringAsync());
+                        var response = await httpClient.SendAsync(request);
+
+                        if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                        {
+                            Helpers.CreateLog(string.Format("Error on Uploading File to Hybrid Analysis (StatusCode <> 200) | ERROR: {0}", await response.Content.ReadAsStringAsync()), true);
+                            throw new Exception();
+                        }
+
+                        scanHybridAnalysis = JsonConvert.DeserializeObject<RootQuickScanHybridAnalysis>(await response.Content.ReadAsStringAsync());
                     }
                 }
             }
             catch (Exception ex)
             {
                 Helpers.CreateLog(string.Format("Error on Uploading File to Hybrid Analysis | ERROR: {0}", ex.Message), true);
-                throw ex;
+                throw;
             }
 
 
@@ -98,14 +106,22 @@ namespace Apollo.APIs.HybridAnalysis
                         request.Headers.TryAddWithoutValidation("user-agent", "Falcon Sandbox");
                         request.Headers.TryAddWithoutValidation("api-key", _apiKey);
 
-                        resultScanHybridAnalysis = JsonConvert.DeserializeObject<RootResultScanHybridAnalysis>(await httpClient.SendAsync(request).Result.Content.ReadAsStringAsync());
+                        var response = await httpClient.SendAsync(request);
+
+                        if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                        {
+                            Helpers.CreateLog(string.Format("Error on Getting Hybrid Analysis Result (StatusCode <> 200) | ERROR: {0}", await response.Content.ReadAsStringAsync()), true);
+                            throw new Exception();
+                        }
+
+                        resultScanHybridAnalysis = JsonConvert.DeserializeObject<RootResultScanHybridAnalysis>(await response.Content.ReadAsStringAsync());
                     }
                 }
             }
             catch (Exception ex)
             {
                 Helpers.CreateLog(string.Format("Error on Getting Hybrid Analysis Result | ERROR: {0}", ex.Message), true);
-                throw ex;
+                throw;
             }
 
             return resultScanHybridAnalysis;
